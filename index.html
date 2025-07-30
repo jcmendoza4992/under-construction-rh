@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RenderHaus | Coming Soon</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <img src="assets/logo.png" alt="RenderHaus Logo" class="logo">
-    <h1>OUR WEBSITE IS UNDER CONSTRUCTION</h1>
+    <h1>Our website is under construction</h1>
     <p>We’ll be live on August 1</p>
     <div id="countdown"></div>
     <p class="contact">For inquiries, contact us at <a href="mailto:info@renderhaus.studio">info@renderhaus.studio</a></p>
@@ -30,13 +29,4 @@
       }
 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("countdown").innerHTML =
-        `${days}D ${hours}H ${minutes}M ${seconds}S`;
-    }, 1000);
-  </script>
-</body>
-</html>
+      const hours = Math.floor((distance
