@@ -2,55 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RenderHaus | Coming Soon</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RenderHaus | Under Construction</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="overlay">
-    <div class="container">
-      <img src="assets/logo.png" alt="RenderHaus Logo" class="logo">
-      <h1>Our website is under construction</h1>
-      <p>We’ll be live on August 1</p>
-      <div id="countdown"></div>
+  <div class="container">
+    <img src="assets/logo.png" alt="RenderHaus Logo" class="logo" />
 
-      <!-- PROGRESS BAR -->
-      <div class="progress-wrapper">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
+    <h1>OUR WEBSITE IS UNDER CONSTRUCTION</h1>
+    <p>We'll be live on August 1, 2025 (PST)</p>
 
-      <p class="contact">For inquiries, contact us at <a href="mailto:info@renderhaus.studio">info@renderhaus.studio</a></p>
+    <div class="progress-wrapper">
+      <div class="progress-bar" id="progress-bar"></div>
     </div>
+
+    <div class="countdown" id="countdown"></div>
+
+    <p class="contact">For inquiries, contact us at <a href="mailto:info@renderhaus.studio">info@renderhaus.studio</a></p>
   </div>
 
   <script>
     const launchDate = new Date("August 1, 2025 00:00:00 GMT-0800").getTime();
-    const startDate = new Date("July 1, 2025 00:00:00 GMT-0800").getTime(); // start for progress bar
+    const startDate = new Date("July 1, 2025 00:00:00 GMT-0800").getTime();
+    const countdown = document.getElementById("countdown");
 
-    const countdown = setInterval(() => {
+    function updateCountdown() {
       const now = new Date().getTime();
+      const total = launchDate - startDate;
+      const elapsed = now - startDate;
       const distance = launchDate - now;
+      const percent = Math.max(0, Math.min((elapsed / total) * 100, 100));
+      document.getElementById("progress-bar").style.width = percent + "%";
 
-      // Countdown text
       if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "We're live!";
-        clearInterval(countdown);
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("countdown").innerHTML =
-          `${days}D ${hours}H ${minutes}M ${seconds}S`;
+        countdown.innerHTML = "We're Live!";
+        return;
       }
 
-      // Progress bar
-      const totalDuration = launchDate - startDate;
-      const elapsed = now - startDate;
-      let percent = Math.max(0, Math.min((elapsed / totalDuration) * 100, 100));
-      document.getElementById("progress-bar").style.width = percent + "%";
-    }, 1000);
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
