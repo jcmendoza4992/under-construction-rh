@@ -3,31 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Coming Soon</title>
-  <style>
-    body {
-      background-color: #121212;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 100px;
-    }
-    h1 {
-      font-size: 36px;
-    }
-    #countdown {
-      font-size: 24px;
-      margin-top: 20px;
-      color: #ffcc00;
-    }
-  </style>
+  <title>RenderHaus | Coming Soon</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Our website is under construction.<br>We'll be live on August 1!</h1>
-  <div id="countdown"></div>
+  <div class="container">
+    <img src="assets/logo.png" alt="RenderHaus Logo" class="logo">
+    <h1>OUR WEBSITE IS UNDER CONSTRUCTION</h1>
+    <p>We’ll be live on August 1</p>
+    <div id="countdown"></div>
+    <p class="contact">For inquiries, contact us at <a href="mailto:info@renderhaus.studio">info@renderhaus.studio</a></p>
+  </div>
 
   <script>
-    const targetDate = new Date("August 1, 2025 00:00:00").getTime();
+    const targetDate = new Date("August 1, 2025 00:00:00 GMT-0800").getTime(); // PST
 
     const countdown = setInterval(() => {
       const now = new Date().getTime();
@@ -45,7 +35,7 @@
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       document.getElementById("countdown").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        `${days}D ${hours}H ${minutes}M ${seconds}S`;
     }, 1000);
   </script>
 </body>
