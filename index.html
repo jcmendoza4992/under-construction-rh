@@ -7,26 +7,50 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <img src="assets/logo.png" alt="RenderHaus Logo" class="logo">
-    <h1>Our website is under construction</h1>
-    <p>We’ll be live on August 1</p>
-    <div id="countdown"></div>
-    <p class="contact">For inquiries, contact us at <a href="mailto:info@renderhaus.studio">info@renderhaus.studio</a></p>
+  <div class="overlay">
+    <div class="container">
+      <img src="assets/logo.png" alt="RenderHaus Logo" class="logo">
+      <h1>Our website is under construction</h1>
+      <p>We’ll be live on August 1</p>
+      <div id="countdown"></div>
+
+      <!-- PROGRESS BAR -->
+      <div class="progress-wrapper">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <p class="contact">For inquiries, contact us at <a href="mailto:info@renderhaus.studio">info@renderhaus.studio</a></p>
+    </div>
   </div>
 
   <script>
-    const targetDate = new Date("August 1, 2025 00:00:00 GMT-0800").getTime(); // PST
+    const launchDate = new Date("August 1, 2025 00:00:00 GMT-0800").getTime();
+    const startDate = new Date("July 1, 2025 00:00:00 GMT-0800").getTime(); // start for progress bar
 
     const countdown = setInterval(() => {
       const now = new Date().getTime();
-      const distance = targetDate - now;
+      const distance = launchDate - now;
 
+      // Countdown text
       if (distance < 0) {
         document.getElementById("countdown").innerHTML = "We're live!";
         clearInterval(countdown);
-        return;
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+          `${days}D ${hours}H ${minutes}M ${seconds}S`;
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance
+      // Progress bar
+      const totalDuration = launchDate - startDate;
+      const elapsed = now - startDate;
+      let percent = Math.max(0, Math.min((elapsed / totalDuration) * 100, 100));
+      document.getElementById("progress-bar").style.width = percent + "%";
+    }, 1000);
+  </script>
+</body>
+</html>
